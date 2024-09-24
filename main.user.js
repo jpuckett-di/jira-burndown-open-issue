@@ -8,9 +8,18 @@
 
 const CLICK_AREA_SELECTOR = "#ghx-chart-view";
 const ISSUE_KEY_SELECTOR = "#ghx-tooltip-content-container>strong";
+const BASE_JIRA_URL = "https://carscommerce.atlassian.net/browse/";
 
 function getIssueKey() {
   return document.querySelector(ISSUE_KEY_SELECTOR).innerText;
+}
+
+function makeUrl() {
+  return BASE_JIRA_URL + getIssueKey();
+}
+
+function openIssue() {
+  window.open(makeUrl(), "_blank");
 }
 
 function attachListener() {
@@ -22,9 +31,7 @@ function attachListener() {
     return;
   }
 
-  clickArea.addEventListener("click", () => {
-    console.log(getIssueKey());
-  });
+  clickArea.addEventListener("click", openIssue);
 }
 
 attachListener();
